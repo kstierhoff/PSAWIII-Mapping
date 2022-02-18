@@ -1,0 +1,45 @@
+long,lat,name,group
+-118.2482,34.053,Los Angeles,city
+-119.7005,34.424303,Santa Barbara,city
+-117.158857,32.719118,San Diego,city
+-122.426031,37.7863,San Francisco,city
+-122.426031,37.7863,San Francisco Bay,landmark
+-122.672201,45.529078,Portland,city
+-124.053685,44.638383,Newport,city
+-120.464761,34.6,Point Conception,landmark
+-124.395709,40.45937,Cape Mendocino,landmark
+-124.012207,46.2509,Columbia River,landmark
+-120.557409,47.6394,Washington,state
+-121.122951,43.796814,Oregon,state
+-120.010662,36.793195,California,state
+-122.5,34.2,line 80.0,transect
+-121.5,32.5,line 90.0,transect
+-128.15,46.21,Columbia River line,transect
+-126.9,44.7,Newport line,transect
+-123.37339,48.425945,Victoria,city
+-121.7788,36.8043,Monterey Bay,landmark
+-132.089075,53.25657,Queen Charlotte,city
+-124.501892,42.746935,Port Orford,city
+-124.562989,42.836038,Cape Blanco,landmark
+-124.219021,43.370744,Coos Bay,city
+-123.830878,46.186522,Astoria,city
+-124.209405,41.760751,Crescent City,city
+-124.161223,40.798,Eureka,city
+-124.635207,47.907212,La Push,city
+-124.62393,48.367699,Neah Bay,city
+-124.724096,48.384536,Cape Flattery,landmark
+-128.386399,50.777518,Cape Scott,landmark
+-124.104277,46.888376,Westport,city
+-123.807749,39.444561,Fort Bragg,city
+-123.799929,39.307152,Mendocino,city
+-123.738502,38.953957,Point Arena,landmark
+-123.047211,38.332625,Bodega Bay,city
+-122.932012,38.015351,Drake's Bay,landmark
+-122.028289,36.972333,Santa Cruz,city
+-121.787190,36.805278,Moss Landing, city
+-121.893715,36.598803,Monterey,city
+-121.807535,36.267130,Big Sur,landmark
+-121.198126,35.640405,San Simeon,city
+-120.730064,35.178518,Avila Beach,City
+-120.850134,35.365015,Morro Bay,city
+-118.195021,33.766570,Long Beach,city
