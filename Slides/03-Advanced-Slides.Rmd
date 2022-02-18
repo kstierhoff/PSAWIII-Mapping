@@ -1,0 +1,65 @@
+---
+title: "Mapping and Spatial Analysis in R!"
+subtitle: "Part 3-Interaction, Animation, etc."
+author: "Kevin Stierhoff <br /> <br /> NOAA Fisheries <br /> Southwest Fisheries Science Center"
+date: '`r format(Sys.time(), format = "%F")`'
+output:
+  xaringan::moon_reader:
+    css: ["default","css/css-slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+# Install and load pacman (library management package)
+if (!require("pacman")) install.packages("pacman")
+
+# Install and load required packages from CRAN ----
+pacman::p_load(xaringan,knitr,here,emo,leaflet,mapview,
+               gganimate,sf,dplyr,ggplot2)
+
+pacman::p_load_gh("hadley/emo")
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(message = F, fig.align = 'center',
+                      fig.dim = c(6.5, 6.1), fig.retina = 2, 
+                      out.height = "100%")
+knitr::opts_hooks$set(fig.callout = function(options) {
+  if (options$fig.callout) {
+    options$echo <- FALSE
+    options$out.height <- "99%"
+    options$fig.width <- 16
+    options$fig.height <- 8
+  }
+  options
+})
+```
+
+## `Leaflet` for Interactive Maps
+
+[Leaflet](https://rstudio.github.io/leaflet/) is one of the most popular open-source JavaScript libraries for interactive maps. This R package makes it easy to integrate and control Leaflet maps in R.
+
+```{r,out.width='8in',out.height='70%',out.width='100%'}
+# The SWFSC
+leaflet() %>% addTiles() %>% addProviderTiles(providers$Esri.OceanBasemap) %>% setView(-117.2512, 32.8707, zoom = 17)
+```  
+
+[Leaflet Provider Tile Gallery](http://leaflet-extras.github.io/leaflet-providers/preview/index.html)
+
+---
+
+## `gganimate` for Animated Maps
+
+[gganimate](https://gganimate.com/) is an extremely powerful and (mostly) simple package for making animated `ggplot2` maps.
+
+---
+
+## `rayshader` for 3D visualization
+
+The [rayshader](https://www.rayshader.com/) package is a brand new and quite amazing package for visualizing and animating data in 3D and 4D. 
+ 
+
