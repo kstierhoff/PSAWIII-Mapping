@@ -16,7 +16,7 @@ if (!require("pacman")) install.packages("pacman")
 pacman::p_load(tidyverse,knitr,here,devtools,bookdown,bookdownplus,
                sf,rnaturalearth,rnaturalearthdata,marmap,
                ggmap,ggrepel,shadowtext,cowplot, ggspatial,
-               viridis,plotly,mapproj)
+               viridis,plotly,mapproj, install = FALSE)
 
 # Install and load required packages from Github -------------------------------
 

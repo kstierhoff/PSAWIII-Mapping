@@ -20,9 +20,9 @@ if (!require("pacman")) install.packages("pacman")
 
 # Install and load required packages from CRAN ----
 pacman::p_load(xaringan,knitr,here,emo,leaflet,mapview,
-               gganimate,sf,dplyr,ggplot2)
+               gganimate,sf,dplyr,ggplot2, install = FALSE)
 
-pacman::p_load_gh("hadley/emo")
+pacman::p_load_gh("hadley/emo", install = FALSE)
 
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(message = F, fig.align = 'center',

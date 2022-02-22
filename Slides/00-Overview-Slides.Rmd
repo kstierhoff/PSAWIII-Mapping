@@ -19,9 +19,9 @@ output:
 if (!require("pacman")) install.packages("pacman")
 
 # Install and load required packages from CRAN ----
-pacman::p_load(xaringan,knitr,here)
+pacman::p_load(xaringan, knitr, here, install = FALSE)
 
-pacman::p_load_gh("hadley/emo")
+pacman::p_load_gh("hadley/emo", install = FALSE)
 
 knitr::opts_chunk$set(echo = F)
 ```

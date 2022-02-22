@@ -22,9 +22,9 @@ if (!require("pacman")) install.packages("pacman")
 pacman::p_load(xaringan,knitr,tidyverse,here,sf,mapview,
                rnaturalearth,rnaturalearthdata,marmap,
                ggmap,ggrepel,shadowtext,cowplot, ggspatial,
-               viridis,plotly,mapproj)
+               viridis,plotly,mapproj, install = FALSE)
 
-pacman::p_load_gh("hadley/emo")
+pacman::p_load_gh("hadley/emo", install = FALSE)
 
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(message = F, warning = F,
@@ -57,9 +57,10 @@ background-size: 400px
 background-position: 50% 80%
 
 ## Why spend time making (nice) maps?
-_"You can see a lot by just looking"_ -Yogi Berra
 
 _"Amateur-looking maps can undermine your audience’s ability to understand important information and weaken the presentation of a professional data investigation."_  - Lovelace et al. (_Geocomputation with R_)
+
+_"You can see a lot by just looking"_ -Yogi Berra
 
 ---
 
@@ -76,17 +77,15 @@ Transect data from an acoustic-trawl method (ATM) survey of small coastal pelagi
 
 ```{r,echo=T}
 # Read data file
-cps <- read_csv(here("Data/cps.csv")) %>% 
-  # Rearrange columns
-  select(transect, interval, everything())
+cps <- read_csv(here("Data/cps.csv")) 
 
 # Show first 10 rows
 head(cps, 5)
 ```  
 
-- `transect` and `interval` constitute a unique measurement
-- `long` and `lat` are (x,y)
-- `nasc` (Nautical Area Scattering Coefficient) ~ "acoustic biomass"
+- `transect` and `int` constitute a unique measurement
+- `long` and `lat` are geographic coordinates (x, y)
+- `nasc` (Nautical Area Scattering Coefficient) ~ "acoustic density"
 
 ---
 
@@ -174,7 +173,7 @@ The same map with some place names added (`r emo::ji("meh")`)
 
 .left-code[
 ```{r plot4-code,eval=F}
-# Subset locations
+# Import landmarks
 locs <- read_csv( #<<
   here("Data/locations.csv")) #<<
 
@@ -280,6 +279,7 @@ stamen.map
 ---
 
 ## Map Server APIs: `ggmap`
+
 Add the CPS transects to the stamen map
 
 .left-code[
@@ -314,6 +314,7 @@ plot_grid(cps.prelim1, cps.prelim2,
 
 ---
 ## Map Server APIs: `ggmap`
+
 Add some place names (obviously not "good" maps) using the `ggrepel` and `shadowtext` packages.
 
 .left-code[
@@ -343,6 +344,32 @@ cowplot::plot_grid(cps.final1, cps.final2)
 
 .right-plot[
 ```{r plot8-output,ref.label="plot8-code",echo=F}
+``` 
+]
+
+## Map Server APIs
+
+[`ggspatial::annotation_map_tile`]() is purported to be the easiest way to add map tiles to your `geom_sf()` maps. Also requires an internet connection.
+
+.left-code[
+```{r plot61-code,eval=F}
+# Convert data frame to sf
+cps.sf <- cps %>% 
+  st_as_sf(coords = c("long","lat"), crs = 4326)
+
+# Define lat and long range
+ggplot(cps.sf, aes(colour = log(nasc+1), size = log(nasc+1))) + 
+  annotation_map_tile(type = "cartolight", zoom = 6) + 
+  geom_sf(alpha = 0.6) + 
+  scale_colour_viridis_c() +
+  # Combine colour and size scales
+  guides(colour = guide_legend(), 
+         size = guide_legend())
+```
+]
+
+.right-plot[
+```{r plot61-output,ref.label="plot61-code",echo=F}
 ``` 
 ]
 
