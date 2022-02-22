@@ -1,7 +1,7 @@
 ---
 title: "Mapping and Spatial Analysis in R!"
 subtitle: "Part 1-Overview"
-author: "Kevin Stierhoff <br /> <br /> NOAA Fisheries <br /> Southwest Fisheries Science Center"
+author: "Kevin Stierhoff <br/> <br/> NOAA Fisheries <br/> SWFSC"
 date: '`r format(Sys.time(), format = "%F")`'
 output:
   xaringan::moon_reader:
@@ -27,13 +27,15 @@ knitr::opts_chunk$set(echo = F)
 ```
 
 ## Welcome!
-**PSAW-II: Mapping and Spatial Analysis in R! **
+**PSAW-III: Mapping and Spatial Analysis in R! **
 
 **About me:** 
 
 + Research Fisheries Biologist at NOAA's SWFSC (since 2008) 
 
 + **Research interests:** Monitoring and recovery of endangered white abalone, assessment of small pelagic fishes, advanced survey technologies (optics and acoustics), data science and reproducible research 
+
++ Learned **Matlab**  in 2007 (quit in 2009, see next bullet...)
 
 + **R** user since 2009 (thanks to Eric Archer and Jeff Laake, among others)
 
@@ -58,12 +60,12 @@ I **AM** _pretty_ good with R, have learned a LOT about making maps in R, and am
 ---
 
 ## Course Materials
-All of the course materials are available via Github at https://github.com/kstierhoff/PSAWII-Mapping. 
+All of the course materials are available via Github at https://github.com/kstierhoff/PSAWIII-Mapping. 
 
 **If(Git)**, in Rstudio:
 File>New Project>Version Control>Git and paste the link above into the Repository URL field.
 
-**If(!Git)**, download the .zip file, extract the contents, and then open the PSAWII-Mapping.Rproj file.
+**If(!Git)**, download the .zip file, extract the contents, and then open the PSAWIII-Mapping.Rproj file.
 
 ![](Images/git-zip.png) 
 
@@ -82,10 +84,12 @@ There are many ways to accomplish mapping and spatial analysis tasks using R (e.
 
 + `mapview` and `leaflet` for interactive data exploration
 
++ `terra` package for raster data
+
 ---
 
-## Survey Feedback
-From the Google Survey (thank you!), the groups' participant info and topics of interest can be summarized as follows: 
+## Survey Feedback (From PSAWII)
+Prior to PSAWII (I forgot this time...), I polled the groups' participants. From that poll, their topics of interest could be summarized as follows: 
 
 Participant info:
 + Intermediate R users or better 
@@ -110,15 +114,15 @@ There were several concerns:
 
 + Lack of R/GIS knowledge
 
-+ (Conflicts with surfing opportunities, ahem!)
-
 I hope to provide interactive programming sessions and hands-on time following slide presentations.
 
 **PLEASE, DO NOT BE INTIMIDATED!**  I hope that the material presented will give you some inspiration to learn new tools and workflows as you build both your R and GIS skills. It'll also help once you can play with your own data and solve your own problems.  
+
+_**Looking at the attendee list, many of you could be leading this workshop!**_
  
 Things may move fast...but you'll have the code to peruse more leisurely anytime you'd like. Feel free to reach out with questions or discoveries that you make along the way.  
 
-Just think of all the spare time you'll have to `r emo::ji("surfer")` once you optimize your R-GIS analysis workflow!
+We have 4 hours set aside, but I don't think we'll run nearly that long. I'd like this to be as interactive as possible given we have 100+ folks attending (I think).
 
 ---
 
@@ -128,16 +132,16 @@ The class will be structured into several modules:
 
 + **01-Introduction:** Basic mapping and data visualization (50%)
 
-+ **02-Intermediate:** Spatial data manipulation and analysis (45)
++ **02-Intermediate:** Spatial data manipulation and analysis (45%)
 
 + **03-Advanced:** Interactive maps, animations, and 3D visualization (5%)  
 
 ---
 
 ## Software requirements
-+ R (v3+, v3.5.2 preferred) 
++ R (v4+, materials developed and tested on v4.1.2) 
 
-+ Rstudio (v1.1+, v1.1.4 preferred) 
++ Rstudio (v2022+, I'm running the latest Preview v2022.02.0) 
 
 + **Required packages will be installed, loaded, or updated (if necessary) using the `pacman` package.** 
 
@@ -149,32 +153,58 @@ if (!require("pacman")) install.packages("pacman")
 pacman::p_load(ggplot2, dplyr, dplyr)
 ```
 
-_**Mac users: **_ You should install `gdal` before installing the `sf` package following the instructions here:  
+_**Mac users: **_ You may need to install `gdal` before installing the `sf` package following the instructions here:  
 https://r-spatial.github.io/sf/
 
 ---
 
 ## Getting Inspiration and Help
 ### [CRAN Task Views](https://cran.r-project.org/web/views/)
+
+I kind of forgot that CRAN still maintains these pages. It has a long list of various spatial packages based on their application.
+
 + [Analysis of Spatial Data](http://cran.stat.ucla.edu/web/views/Spatial.html) 
 
 + [Handling and Analyzing Spatio-Temporal Data](https://cran.r-project.org/web/views/SpatioTemporal.html) 
 
---
+---
 
+## Getting Inspiration and Help
 ### Books
-+ **[Geocomputation with R](https://geocompr.robinlovelace.net/)** eBook by Lovelace, Nowsad, and Muenchow, for the most comprehensive treatment of, well, geocomputation using R
+Folks are making all their books available on line, for **FREE**:
 
-+ [R for Data Science](https://r4ds.had.co.nz/) eBook by Grolemund and Wickam for a wealth of info on data analysis, relying heavily on Tidyverse packages 
++ **[ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/maps.html)** eBook by Wickham, Navarro, and Petersen. Ch. 6-Mapping provides an excellent primer on map making using `ggplot2`, `sf`, etc.
+
++ **[Geocomputation with R](https://geocompr.robinlovelace.net/)** eBook by Lovelace, Nowsad, and Muenchow, for the most comprehensive treatment of, well, geocomputation using R.
+
++ [R for Data Science](https://r4ds.had.co.nz/) eBook by Grolemund and Wickham for a wealth of info on data analysis, relying heavily on Tidyverse packages. 
 
 + [Fundamentals of Data Visualization](https://serialmentor.com/dataviz/) eBook by Wilke for everything dataviz
 
 ---
+## Getting Inspiration and Help
+### Vignettes: {sf}
+List the available vignettes in the `sf` package:
 
-## Getting Inspiration and Help (cont'd)
+`vignette(package = "sf")`  
+
+`sf1` 1. Simple Features for R (source, html)  
+`sf2` 2. Reading, Writing and Converting Simple Features (source, html)
+`sf3` 3. Manipulating Simple Feature Geometries (source, html)  
+`sf4` 4. Manipulating Simple Features (source, html)  
+`sf5` 5. Plotting Simple Features (source, html)  
+`sf6` 6. Miscellaneous (source, html)  
+`sf7` 7. Spherical geometry in sf using s2geometry (source, html)  
+
+View the first vignette:  
+
+`vignette(package = "sf1")`
+
+Or directly via the articles for the [`sf` package](https://r-spatial.github.io/sf/index.html)
+---
+
+## Getting Inspiration and Help
 ### Github, Blogs, Wikis, etc.
-+ The various help pages, vignettes, and articles for the [`sf` package](https://r-spatial.github.io/sf/index.html)
-
 + Drawing beautiful maps programmatically wiht R, sf, and ggplot2: [Part 1](https://www.r-spatial.org//r/2018/10/25/ggplot2-sf.html), [Part 2](https://www.r-spatial.org//r/2018/10/25/ggplot2-sf-2.html), and [Part 3](https://www.r-spatial.org//r/2018/10/25/ggplot2-sf-3.html)
 
 + [Introduction to GIS with R](https://www.jessesadler.com/post/gis-with-r-intro/) 
@@ -182,12 +212,12 @@ https://r-spatial.github.io/sf/
 + [An Exploration of Simple Features (sf) with R](https://www.jessesadler.com/post/simple-feature-objects/)
 
 --
-
+## Getting Inspiration and Help
 ### Social media (seriously)
 + Twitter
   + \#rstats and \#rspatial
   
-  + @hadleywickham, @edzerpebesma, @mdsumner, @ClausWilke, @robinlovlace, and many, many others
+  + @hadleywickham, @edzerpebesma, @mdsumner, @ClausWilke, @robinlovlace, **@jomilo75**, and many, many others (@kstierhoff, but ignore the Orioles and Ravens posts)
 
 ---
 
@@ -206,7 +236,7 @@ background-image: url(images/example-atm.png)
 background-size: 800px
 background-position: 70% 50%  
 
-A multipanel figure from a Acoustic-Trawl Survey of CPS using **`ggplot2`** and **`cowplot`**
+A multi-panel figure from a Acoustic-Trawl Method (ATM) Survey of CPS combining **`ggplot2`** objects using **`cowplot`**
 
 ---
 
@@ -214,7 +244,7 @@ background-image: url(images/example-rov.png)
 background-size: 600px
 background-position: 50% 70% 
 
-A multipanel figure using `ggplot2` (with facets) and `sf`
+A multi-panel figure of ROV transects to survey endangered white abalone using `ggplot2` (with facets) and `sf`
 
 ---
 
@@ -222,7 +252,7 @@ background-image: url(images/example-leaflet.png)
 background-size: 700px
 background-position: 50% 70% 
 
-An **[interactive map](https://swfscdata.nmfs.noaa.gov/AST/ATMap/interactive_explorer.HTML)** of Acoustic Trawl Survey data using `Leaflet` 
+An **[interactive map](https://swfscdata.nmfs.noaa.gov/AST/ATMap/interactive_explorer.HTML)** of ATM Survey data using `Leaflet` 
 
 ---
 ## Onward, let's make some maps!
