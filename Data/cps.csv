@@ -1,4 +1,4 @@
-transect,int,long,lat,nasc,bin
+transect,interval,long,lat,nasc,bin
 1,1,-118.3572062,32.13574898,0,1
 1,2,-118.3389243,32.14536253,0,1
 1,3,-118.3209388,32.15431337,0,1

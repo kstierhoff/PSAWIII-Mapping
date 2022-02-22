@@ -347,6 +347,7 @@ cowplot::plot_grid(cps.final1, cps.final2)
 ``` 
 ]
 
+---
 ## Map Server APIs
 
 [`ggspatial::annotation_map_tile`]() is purported to be the easiest way to add map tiles to your `geom_sf()` maps. Also requires an internet connection.
@@ -358,8 +359,10 @@ cps.sf <- cps %>%
   st_as_sf(coords = c("long","lat"), crs = 4326)
 
 # Define lat and long range
-ggplot(cps.sf, aes(colour = log(nasc+1), size = log(nasc+1))) + 
-  annotation_map_tile(type = "cartolight", zoom = 6) + 
+ggplot(cps.sf, aes(colour = log(nasc+1), 
+                   size = log(nasc+1))) + 
+  annotation_map_tile(type = "cartolight", #<<
+                      zoom = 6) + #<<
   geom_sf(alpha = 0.6) + 
   scale_colour_viridis_c() +
   # Combine colour and size scales

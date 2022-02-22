@@ -84,7 +84,9 @@ There are many ways to accomplish mapping and spatial analysis tasks using R (e.
 
 + `mapview` and `leaflet` for interactive data exploration
 
-+ `terra` package for raster data
++ `terra` package for raster data*
+
+_*Raster examples may be limited...it's presently my Achilles heel...and I'm running out of time to teach myself!_
 
 ---
 
@@ -122,7 +124,7 @@ _**Looking at the attendee list, many of you could be leading this workshop!**_
  
 Things may move fast...but you'll have the code to peruse more leisurely anytime you'd like. Feel free to reach out with questions or discoveries that you make along the way.  
 
-We have 4 hours set aside, but I don't think we'll run nearly that long. I'd like this to be as interactive as possible given we have 100+ folks attending (I think).
+We have 4 hours set aside, but I don't think we'll run nearly that long. I'd like this to be as interactive as possible given we have almost 200 **(!)** attendees registered.
 
 ---
 
@@ -138,19 +140,19 @@ The class will be structured into several modules:
 
 ---
 
-## Software requirements
+## Software recommendations
 + R (v4+, materials developed and tested on v4.1.2) 
 
 + Rstudio (v2022+, I'm running the latest Preview v2022.02.0) 
 
-+ **Required packages will be installed, loaded, or updated (if necessary) using the `pacman` package.** 
++ **Required packages will be loaded using the `pacman` package.** 
 
 ```{r, echo=T, message=F}
 # Install and load pacman (library management package)
 if (!require("pacman")) install.packages("pacman")
 
 # Install and load required packages from CRAN ----
-pacman::p_load(ggplot2, dplyr, dplyr)
+pacman::p_load(ggplot2, dplyr, dplyr, install = FALSE)
 ```
 
 _**Mac users: **_ You may need to install `gdal` before installing the `sf` package following the instructions here:  
@@ -177,9 +179,9 @@ Folks are making all their books available on line, for **FREE**:
 
 + **[Geocomputation with R](https://geocompr.robinlovelace.net/)** eBook by Lovelace, Nowsad, and Muenchow, for the most comprehensive treatment of, well, geocomputation using R.
 
-+ [R for Data Science](https://r4ds.had.co.nz/) eBook by Grolemund and Wickham for a wealth of info on data analysis, relying heavily on Tidyverse packages. 
++ [Fundamentals of Data Visualization](https://serialmentor.com/dataviz/) eBook by Wilke for everything dataviz.
 
-+ [Fundamentals of Data Visualization](https://serialmentor.com/dataviz/) eBook by Wilke for everything dataviz
++ [R for Data Science](https://r4ds.had.co.nz/) eBook by Grolemund and Wickham for a wealth of info on data analysis, relying heavily on Tidyverse packages. 
 
 ---
 ## Getting Inspiration and Help
